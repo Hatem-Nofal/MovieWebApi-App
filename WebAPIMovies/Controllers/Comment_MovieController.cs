@@ -16,7 +16,7 @@ namespace MovieWebApi.Controllers
         MoviesDBDataContext MOVDB = new MoviesDBDataContext();
 
    // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]  
-        public IEnumerable<Get_Movie_CommentResult> GetWishMovie(int UserID)
+        public IEnumerable<Get_Movie_CommentResult> GetWishMovie(string UserID)
         {
             var Commentslist = MOVDB.Get_Movie_Comment(UserID).ToList();
             return Commentslist;
@@ -27,7 +27,7 @@ namespace MovieWebApi.Controllers
      //   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]  
         // POST: api/Movies
         [HttpPost]
-        public int PostInsertMovieComment(int ID_User, string Comment_movie,  int Movie_id,int Rating)
+        public int PostInsertMovieComment(string ID_User, string Comment_movie, string Movie_id, string Rating)
         {
 
             return MOVDB.Insert_wish_movies_list(ID_User,Comment_movie,Movie_id,Rating);

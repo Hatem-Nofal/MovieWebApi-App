@@ -1,18 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBMovies" Class="MoviesDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=DBMovies;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DBMoviesConnectionString" Provider="System.Data.SqlClient" />
-  <Function Name="dbo.Get_Movie_Comment" Method="Get_Movie_Comment">
-    <Parameter Name="ID_user" Parameter="iD_user" Type="System.Int32" DbType="Int" />
-    <ElementType Name="Get_Movie_CommentResult">
-      <Column Name="Movie_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.Update_user" Method="Update_user">
+    <Parameter Name="userid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Last_Name" Parameter="last_Name" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Update_userResult">
+      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="First_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get_Users_wish_movies" Method="Get_Users_wish_movies">
+    <Parameter Name="User_id" Parameter="user_id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Get_Users_wish_moviesResult">
+      <Column Name="Movie_Id" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="User_id" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="User_Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="User_Rate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Rate" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getuser" Method="getuser">
+    <Parameter Name="socialID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="getuserResult">
+      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="First_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getuserbyid" Method="getuserbyid">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="getuserbyidResult">
+      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="First_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getuseremail" Method="getuseremail">
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="getuseremailResult">
+      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.insert_New_User" Method="insert_New_User">
+    <Parameter Name="User_Email" Parameter="user_Email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="User_Password" Parameter="user_Password" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Last_Name" Parameter="last_Name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Soical_ID" Parameter="soical_ID" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Oauth_type" Parameter="oauth_type" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="insert_New_UserResult">
+      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="First_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.Insert_wish_movies_list" Method="Insert_wish_movies_list">
-    <Parameter Name="ID_User" Parameter="iD_User" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_User" Parameter="iD_User" Type="System.String" DbType="NVarChar(MAX)" />
     <Parameter Name="Movie_Comment" Parameter="movie_Comment" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="movie_id" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Rating_Movie" Parameter="rating_Movie" Type="System.Int32" DbType="Int" />
+    <Parameter Name="movie_id" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Rating_Movie" Parameter="rating_Movie" Type="System.String" DbType="NVarChar(MAX)" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.Login_user" Method="Login_user">
@@ -20,53 +93,22 @@
     <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(50)" />
     <ElementType Name="Login_userResult">
       <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="User_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Role" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.Update_user" Method="Update_user">
-    <Parameter Name="userid" Type="System.Int32" DbType="Int" />
-    <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Last_Name" Parameter="last_Name" Type="System.String" DbType="NVarChar(50)" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.insert_New_User" Method="insert_New_User">
-    <Parameter Name="User_Email" Parameter="user_Email" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="User_Password" Parameter="user_Password" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Last_Name" Parameter="last_Name" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Soical_ID" Parameter="soical_ID" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Oauth_type" Parameter="oauth_type" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="insert_New_UserResult">
-      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="User_Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Role" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="First_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="First_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.getuser" Method="getuser">
-    <Parameter Name="socialID" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="getuserResult">
-      <Column Name="ID_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="User_Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Role" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="First_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Soical_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Oauth_type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.Get_Movie_Comment" Method="Get_Movie_Comment">
+    <Parameter Name="ID_user" Parameter="iD_user" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="Get_Movie_CommentResult">
+      <Column Name="Movie_Id" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="User_Rate" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

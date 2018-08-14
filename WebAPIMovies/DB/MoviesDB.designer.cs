@@ -62,15 +62,50 @@ namespace WebAPIMovies.DB
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Get_Movie_Comment")]
-		public ISingleResult<Get_Movie_CommentResult> Get_Movie_Comment([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_user", DbType="Int")] System.Nullable<int> iD_user)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Update_user")]
+		public ISingleResult<Update_userResult> Update_user([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> userid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Name", DbType="NVarChar(20)")] string user_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(MAX)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="First_Name", DbType="NVarChar(50)")] string first_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Last_Name", DbType="NVarChar(50)")] string last_Name)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_user);
-			return ((ISingleResult<Get_Movie_CommentResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userid, user_Name, email, first_Name, last_Name);
+			return ((ISingleResult<Update_userResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Get_Users_wish_movies")]
+		public ISingleResult<Get_Users_wish_moviesResult> Get_Users_wish_movies([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_id", DbType="Int")] System.Nullable<int> user_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_id);
+			return ((ISingleResult<Get_Users_wish_moviesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getuser")]
+		public ISingleResult<getuserResult> getuser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string socialID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), socialID);
+			return ((ISingleResult<getuserResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getuserbyid")]
+		public ISingleResult<getuserbyidResult> getuserbyid([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="NVarChar(50)")] string userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+			return ((ISingleResult<getuserbyidResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getuseremail")]
+		public ISingleResult<getuseremailResult> getuseremail([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string email)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email);
+			return ((ISingleResult<getuseremailResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.insert_New_User")]
+		public ISingleResult<insert_New_UserResult> insert_New_User([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Email", DbType="NVarChar(MAX)")] string user_Email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Password", DbType="NVarChar(MAX)")] string user_Password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Name", DbType="NVarChar(MAX)")] string user_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="First_Name", DbType="NVarChar(MAX)")] string first_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Last_Name", DbType="NVarChar(MAX)")] string last_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Soical_ID", DbType="NVarChar(MAX)")] string soical_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oauth_type", DbType="NVarChar(MAX)")] string oauth_type)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_Email, user_Password, user_Name, first_Name, last_Name, soical_ID, oauth_type);
+			return ((ISingleResult<insert_New_UserResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Insert_wish_movies_list")]
-		public int Insert_wish_movies_list([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_User", DbType="Int")] System.Nullable<int> iD_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Movie_Comment", DbType="NVarChar(MAX)")] string movie_Comment, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> movie_id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Rating_Movie", DbType="Int")] System.Nullable<int> rating_Movie)
+		public int Insert_wish_movies_list([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_User", DbType="NVarChar(MAX)")] string iD_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Movie_Comment", DbType="NVarChar(MAX)")] string movie_Comment, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(MAX)")] string movie_id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Rating_Movie", DbType="NVarChar(MAX)")] string rating_Movie)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_User, movie_Comment, movie_id, rating_Movie);
 			return ((int)(result.ReturnValue));
@@ -83,189 +118,15 @@ namespace WebAPIMovies.DB
 			return ((ISingleResult<Login_userResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Update_user")]
-		public int Update_user([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> userid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Name", DbType="NVarChar(20)")] string user_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(MAX)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(MAX)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="First_Name", DbType="NVarChar(50)")] string first_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Last_Name", DbType="NVarChar(50)")] string last_Name)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Get_Movie_Comment")]
+		public ISingleResult<Get_Movie_CommentResult> Get_Movie_Comment([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_user", DbType="NVarChar(MAX)")] string iD_user)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userid, user_Name, email, password, first_Name, last_Name);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.insert_New_User")]
-		public ISingleResult<insert_New_UserResult> insert_New_User([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Email", DbType="NVarChar(MAX)")] string user_Email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Password", DbType="NVarChar(MAX)")] string user_Password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_Name", DbType="NVarChar(50)")] string user_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="First_Name", DbType="NVarChar(50)")] string first_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Last_Name", DbType="NVarChar(50)")] string last_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Soical_ID", DbType="NVarChar(50)")] string soical_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oauth_type", DbType="NVarChar(50)")] string oauth_type)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_Email, user_Password, user_Name, first_Name, last_Name, soical_ID, oauth_type);
-			return ((ISingleResult<insert_New_UserResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getuser")]
-		public ISingleResult<getuserResult> getuser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string socialID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), socialID);
-			return ((ISingleResult<getuserResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_user);
+			return ((ISingleResult<Get_Movie_CommentResult>)(result.ReturnValue));
 		}
 	}
 	
-	public partial class Get_Movie_CommentResult
-	{
-		
-		private int _Movie_Id;
-		
-		private string _User_Comment;
-		
-		private System.Nullable<int> _User_Rate;
-		
-		public Get_Movie_CommentResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Movie_Id", DbType="Int NOT NULL")]
-		public int Movie_Id
-		{
-			get
-			{
-				return this._Movie_Id;
-			}
-			set
-			{
-				if ((this._Movie_Id != value))
-				{
-					this._Movie_Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Comment", DbType="NVarChar(MAX)")]
-		public string User_Comment
-		{
-			get
-			{
-				return this._User_Comment;
-			}
-			set
-			{
-				if ((this._User_Comment != value))
-				{
-					this._User_Comment = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Rate", DbType="Int")]
-		public System.Nullable<int> User_Rate
-		{
-			get
-			{
-				return this._User_Rate;
-			}
-			set
-			{
-				if ((this._User_Rate != value))
-				{
-					this._User_Rate = value;
-				}
-			}
-		}
-	}
-	
-	public partial class Login_userResult
-	{
-		
-		private int _ID_User;
-		
-		private string _User_Name;
-		
-		private string _Role;
-		
-		private string _Email;
-		
-		private string _Password;
-		
-		public Login_userResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="Int NOT NULL")]
-		public int ID_User
-		{
-			get
-			{
-				return this._ID_User;
-			}
-			set
-			{
-				if ((this._ID_User != value))
-				{
-					this._ID_User = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string User_Name
-		{
-			get
-			{
-				return this._User_Name;
-			}
-			set
-			{
-				if ((this._User_Name != value))
-				{
-					this._User_Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-		public string Role
-		{
-			get
-			{
-				return this._Role;
-			}
-			set
-			{
-				if ((this._Role != value))
-				{
-					this._Role = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this._Password = value;
-				}
-			}
-		}
-	}
-	
-	public partial class insert_New_UserResult
+	public partial class Update_userResult
 	{
 		
 		private int _ID_User;
@@ -286,7 +147,7 @@ namespace WebAPIMovies.DB
 		
 		private string _Oauth_type;
 		
-		public insert_New_UserResult()
+		public Update_userResult()
 		{
 		}
 		
@@ -306,7 +167,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string User_Name
 		{
 			get
@@ -370,7 +231,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(MAX)")]
 		public string First_Name
 		{
 			get
@@ -386,7 +247,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(MAX)")]
 		public string Last_Name
 		{
 			get
@@ -402,7 +263,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(MAX)")]
 		public string Soical_ID
 		{
 			get
@@ -418,7 +279,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string Oauth_type
 		{
 			get
@@ -430,6 +291,86 @@ namespace WebAPIMovies.DB
 				if ((this._Oauth_type != value))
 				{
 					this._Oauth_type = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Get_Users_wish_moviesResult
+	{
+		
+		private string _Movie_Id;
+		
+		private string _User_id;
+		
+		private string _User_Comment;
+		
+		private string _User_Rate;
+		
+		public Get_Users_wish_moviesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Movie_Id", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Movie_Id
+		{
+			get
+			{
+				return this._Movie_Id;
+			}
+			set
+			{
+				if ((this._Movie_Id != value))
+				{
+					this._Movie_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_id", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string User_id
+		{
+			get
+			{
+				return this._User_id;
+			}
+			set
+			{
+				if ((this._User_id != value))
+				{
+					this._User_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Comment", DbType="NVarChar(MAX)")]
+		public string User_Comment
+		{
+			get
+			{
+				return this._User_Comment;
+			}
+			set
+			{
+				if ((this._User_Comment != value))
+				{
+					this._User_Comment = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Rate", DbType="NVarChar(MAX)")]
+		public string User_Rate
+		{
+			get
+			{
+				return this._User_Rate;
+			}
+			set
+			{
+				if ((this._User_Rate != value))
+				{
+					this._User_Rate = value;
 				}
 			}
 		}
@@ -476,7 +417,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string User_Name
 		{
 			get
@@ -540,7 +481,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(MAX)")]
 		public string First_Name
 		{
 			get
@@ -556,7 +497,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(MAX)")]
 		public string Last_Name
 		{
 			get
@@ -572,7 +513,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(MAX)")]
 		public string Soical_ID
 		{
 			get
@@ -588,7 +529,7 @@ namespace WebAPIMovies.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string Oauth_type
 		{
 			get
@@ -600,6 +541,604 @@ namespace WebAPIMovies.DB
 				if ((this._Oauth_type != value))
 				{
 					this._Oauth_type = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getuserbyidResult
+	{
+		
+		private int _ID_User;
+		
+		private string _User_Name;
+		
+		private string _Role;
+		
+		private string _Email;
+		
+		private string _Password;
+		
+		private string _First_Name;
+		
+		private string _Last_Name;
+		
+		private string _Soical_ID;
+		
+		private string _Oauth_type;
+		
+		public getuserbyidResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="Int NOT NULL")]
+		public int ID_User
+		{
+			get
+			{
+				return this._ID_User;
+			}
+			set
+			{
+				if ((this._ID_User != value))
+				{
+					this._ID_User = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string User_Name
+		{
+			get
+			{
+				return this._User_Name;
+			}
+			set
+			{
+				if ((this._User_Name != value))
+				{
+					this._User_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this._Role = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(MAX)")]
+		public string First_Name
+		{
+			get
+			{
+				return this._First_Name;
+			}
+			set
+			{
+				if ((this._First_Name != value))
+				{
+					this._First_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(MAX)")]
+		public string Last_Name
+		{
+			get
+			{
+				return this._Last_Name;
+			}
+			set
+			{
+				if ((this._Last_Name != value))
+				{
+					this._Last_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(MAX)")]
+		public string Soical_ID
+		{
+			get
+			{
+				return this._Soical_ID;
+			}
+			set
+			{
+				if ((this._Soical_ID != value))
+				{
+					this._Soical_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Oauth_type
+		{
+			get
+			{
+				return this._Oauth_type;
+			}
+			set
+			{
+				if ((this._Oauth_type != value))
+				{
+					this._Oauth_type = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getuseremailResult
+	{
+		
+		private int _ID_User;
+		
+		public getuseremailResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="Int NOT NULL")]
+		public int ID_User
+		{
+			get
+			{
+				return this._ID_User;
+			}
+			set
+			{
+				if ((this._ID_User != value))
+				{
+					this._ID_User = value;
+				}
+			}
+		}
+	}
+	
+	public partial class insert_New_UserResult
+	{
+		
+		private int _ID_User;
+		
+		private string _User_Name;
+		
+		private string _Role;
+		
+		private string _Email;
+		
+		private string _Password;
+		
+		private string _First_Name;
+		
+		private string _Last_Name;
+		
+		private string _Soical_ID;
+		
+		private string _Oauth_type;
+		
+		public insert_New_UserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="Int NOT NULL")]
+		public int ID_User
+		{
+			get
+			{
+				return this._ID_User;
+			}
+			set
+			{
+				if ((this._ID_User != value))
+				{
+					this._ID_User = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string User_Name
+		{
+			get
+			{
+				return this._User_Name;
+			}
+			set
+			{
+				if ((this._User_Name != value))
+				{
+					this._User_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this._Role = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(MAX)")]
+		public string First_Name
+		{
+			get
+			{
+				return this._First_Name;
+			}
+			set
+			{
+				if ((this._First_Name != value))
+				{
+					this._First_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(MAX)")]
+		public string Last_Name
+		{
+			get
+			{
+				return this._Last_Name;
+			}
+			set
+			{
+				if ((this._Last_Name != value))
+				{
+					this._Last_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(MAX)")]
+		public string Soical_ID
+		{
+			get
+			{
+				return this._Soical_ID;
+			}
+			set
+			{
+				if ((this._Soical_ID != value))
+				{
+					this._Soical_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Oauth_type
+		{
+			get
+			{
+				return this._Oauth_type;
+			}
+			set
+			{
+				if ((this._Oauth_type != value))
+				{
+					this._Oauth_type = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Login_userResult
+	{
+		
+		private int _ID_User;
+		
+		private string _User_Name;
+		
+		private string _Role;
+		
+		private string _Email;
+		
+		private string _Password;
+		
+		private string _First_Name;
+		
+		private string _Last_Name;
+		
+		private string _Soical_ID;
+		
+		private string _Oauth_type;
+		
+		public Login_userResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="Int NOT NULL")]
+		public int ID_User
+		{
+			get
+			{
+				return this._ID_User;
+			}
+			set
+			{
+				if ((this._ID_User != value))
+				{
+					this._ID_User = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string User_Name
+		{
+			get
+			{
+				return this._User_Name;
+			}
+			set
+			{
+				if ((this._User_Name != value))
+				{
+					this._User_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this._Role = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_First_Name", DbType="NVarChar(MAX)")]
+		public string First_Name
+		{
+			get
+			{
+				return this._First_Name;
+			}
+			set
+			{
+				if ((this._First_Name != value))
+				{
+					this._First_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Name", DbType="NVarChar(MAX)")]
+		public string Last_Name
+		{
+			get
+			{
+				return this._Last_Name;
+			}
+			set
+			{
+				if ((this._Last_Name != value))
+				{
+					this._Last_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Soical_ID", DbType="NVarChar(MAX)")]
+		public string Soical_ID
+		{
+			get
+			{
+				return this._Soical_ID;
+			}
+			set
+			{
+				if ((this._Soical_ID != value))
+				{
+					this._Soical_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oauth_type", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Oauth_type
+		{
+			get
+			{
+				return this._Oauth_type;
+			}
+			set
+			{
+				if ((this._Oauth_type != value))
+				{
+					this._Oauth_type = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Get_Movie_CommentResult
+	{
+		
+		private string _Movie_Id;
+		
+		private string _User_Comment;
+		
+		private string _User_Rate;
+		
+		public Get_Movie_CommentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Movie_Id", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Movie_Id
+		{
+			get
+			{
+				return this._Movie_Id;
+			}
+			set
+			{
+				if ((this._Movie_Id != value))
+				{
+					this._Movie_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Comment", DbType="NVarChar(MAX)")]
+		public string User_Comment
+		{
+			get
+			{
+				return this._User_Comment;
+			}
+			set
+			{
+				if ((this._User_Comment != value))
+				{
+					this._User_Comment = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Rate", DbType="NVarChar(MAX)")]
+		public string User_Rate
+		{
+			get
+			{
+				return this._User_Rate;
+			}
+			set
+			{
+				if ((this._User_Rate != value))
+				{
+					this._User_Rate = value;
 				}
 			}
 		}
